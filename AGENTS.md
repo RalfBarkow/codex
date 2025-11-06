@@ -10,6 +10,7 @@
 - `nix develop` — open the fully-provisioned shell with Codex, Node.js 22, git, ripgrep, and helper scripts.
 - `codex --help` — verify the Codex CLI is available and review supported subcommands.
 - `codex-sketch ./screens -- "Refactor per sketch"` — example workflow for attaching reference imagery to a prompt; adjust the path and prompt to match your task.
+- `workspace-repo-init new-project` — scaffold `~/workspace/new-project`, run `git init` if needed, and whitelist it inside `~/workspace/.gitignore`.
 
 ## Coding Style & Naming Conventions
 - Prefer TypeScript or modern JavaScript for new tooling; use 2-space indentation and ES module syntax.
