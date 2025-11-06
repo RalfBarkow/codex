@@ -122,16 +122,27 @@ EOF
 
           echo "Repository directory ready at ''${target}"
         '';
+        codexBatchBridge = pkgs.runCommand "codex-batch-bridge" { } ''
+          mkdir -p $out/bin
+          install -m755 ${./tools/codex-batch-bridge} $out/bin/codex-batch-bridge
+        '';
+        codexTranscriptStream = pkgs.runCommand "codex-transcript-stream" { } ''
+          mkdir -p $out/bin
+          install -m755 ${./tools/codex-transcript-stream} $out/bin/codex-transcript-stream
+        '';
       in {
         packages.default = codexPkg;
         packages.codex-sketch = codexSketch;
         packages.workspace-repo-init = workspaceRepoInit;
+        packages.codex-batch-bridge = codexBatchBridge;
 
         devShells.default = pkgs.mkShell {
           packages = [
             codexPkg
             codexSketch
             workspaceRepoInit
+            codexBatchBridge
+            codexTranscriptStream
             pkgs.nodejs_22
             pkgs.git
             pkgs.imagemagick

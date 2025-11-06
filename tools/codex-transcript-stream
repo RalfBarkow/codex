@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+FIFO_DEFAULT="${HOME}/workspace/codex/.codex-transcript"
+LOG_DEFAULT="${HOME}/.codex/last-run.log"
+
+fifo="${CODEX_TRANSCRIPT_FIFO:-$FIFO_DEFAULT}"
+log="${CODEX_TRANSCRIPT_LOG:-$LOG_DEFAULT}"
+
+mkdir -p "$(dirname "$log")"
+
+if [ ! -p "$fifo" ]; then
+  rm -f "$fifo"
+  mkfifo "$fifo"
+fi
+
+echo "▶ Streaming Codex transcript to: $fifo"
+echo "▶ Mirroring transcript log to:  $log"
+echo
+echo "Press Ctrl+C to stop."
+
+codex "$@" 2>&1 | tee "$log" > "$fifo"

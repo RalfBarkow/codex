@@ -4,13 +4,15 @@
 - Core tooling lives in `flake.nix`; it defines the Codex CLI binary, helper scripts, and the development shell. Treat this as the single source of truth for dependencies.
 - `.envrc` and `.direnv/` seed environment variables; update them if your change requires additional secrets or paths.
 - Place new source modules under `src/` and group related utilities by feature. Add corresponding assets (mock screens, prompts, etc.) under `screens/` to keep design inputs discoverable.
-- Keep experimental scripts inside `tools/` with a short README so future agents can reuse them.
+- Keep experimental scripts inside `tools/` with a short README so future agents can reuse them. Additional integration notes belong in `docs/`.
 
 ## Build, Test, and Development Commands
 - `nix develop` — open the fully-provisioned shell with Codex, Node.js 22, git, ripgrep, and helper scripts.
 - `codex --help` — verify the Codex CLI is available and review supported subcommands.
 - `codex-sketch ./screens -- "Refactor per sketch"` — example workflow for attaching reference imagery to a prompt; adjust the path and prompt to match your task.
+- `codex-batch-bridge -f prompt.md -- -C "$(pwd)"` — run `codex exec` non-interactively; ideal for Glamorous Toolkit pipelines that capture stdout.
 - `workspace-repo-init new-project` — scaffold `~/workspace/new-project`, run `git init` if needed, and whitelist it inside `~/workspace/.gitignore`.
+- See `docs/gt-batch-bridge.md` for additional integration tips with Glamorous Toolkit.
 
 ## Coding Style & Naming Conventions
 - Prefer TypeScript or modern JavaScript for new tooling; use 2-space indentation and ES module syntax.
