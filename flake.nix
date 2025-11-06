@@ -130,6 +130,14 @@ EOF
           mkdir -p $out/bin
           install -m755 ${./tools/codex-transcript-stream} $out/bin/codex-transcript-stream
         '';
+        pythonBlocker = pkgs.writeShellScriptBin "python" ''
+          echo "python invocations are disabled in this environment." >&2
+          exit 1
+        '';
+        python3Blocker = pkgs.writeShellScriptBin "python3" ''
+          echo "python invocations are disabled in this environment." >&2
+          exit 1
+        '';
       in {
         packages.default = codexPkg;
         packages.codex-sketch = codexSketch;
@@ -143,6 +151,8 @@ EOF
             workspaceRepoInit
             codexBatchBridge
             codexTranscriptStream
+            pythonBlocker
+            python3Blocker
             pkgs.nodejs_22
             pkgs.git
             pkgs.imagemagick
