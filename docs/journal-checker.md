@@ -16,6 +16,10 @@ Journal Checker is a lightweight agent whose sole job is to scan FedWiki pages a
 - If it reports no issues, append a note to the page.
 - If it reports errors, rewrite the page JSON (create/factory/edit order) and rerun.
 
+### CLI Helper
+- Run `node tools/journal-checker.mjs ~/.wiki/wiki.ralfbarkow.ch/pages/<page>` from the `codex` repo to scan a page locally.
+- Exit status `0` means success; status `2` lists issues (creation, chronology, revision, etc.).
+
 ## Future Ideas
 - Add a small CLI helper that pipes a page file through the checker.
 - Build an Iceberg/GT command to open the current page in a FedWiki editor, run the checker, and display results inline.
