@@ -5,6 +5,7 @@
 - `.envrc` and `.direnv/` seed environment variables; update them if your change requires additional secrets or paths.
 - Place new source modules under `src/` and group related utilities by feature. Add corresponding assets (mock screens, prompts, etc.) under `screens/` to keep design inputs discoverable.
 - Keep experimental scripts inside `tools/` with a short README so future agents can reuse them. Additional integration notes belong in `docs/`.
+- When documenting workflow changes, author the FedWiki page first (under `~/.wiki/.../pages/`), then mirror it into Lepiter. The wiki acts as the canonical log; treat Lepiter pages as managed by the GT image.
 
 ## Build, Test, and Development Commands
 - `nix develop` — open the fully-provisioned shell with Codex, Node.js 22, git, ripgrep, and helper scripts.
